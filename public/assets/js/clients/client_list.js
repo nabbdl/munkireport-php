@@ -80,22 +80,23 @@ $(document).on('appReady', function(e, lang) {
 		  }).remove();
 		  $(outer).find('.dataTables_filter input').addClass('form-control input-sm')
 		  	.attr('placeholder', placeholder)
-		  	.after($('<span style="cursor: pointer; color: #999" class="input-group-addon"><i class="fa fa-times"></i></span>')
-		  	.click(function(e){
-		  		
+		  	.on('change textInput input', function(e){
+
+				// get new contents
+		  		var search = $(e.target).val();
 		  		// Clear hash
 		  		var loc = window.location;
 		  		if ("replaceState" in history)
-			        history.replaceState("", document.title, loc.pathname + loc.search);
+			        history.replaceState('', document.title, loc.pathname + loc.search + '#' + search);
 			    else {
-			  		window.location.hash = ''
+			  		window.location.hash = search
 			  	}
-
+				
 		  		// Erase and trigger datatables filter
-		  		$(outer).find('.dataTables_filter input').val('');
-		  		$(outer).find('table').dataTable().fnFilter('');
+		  		// $(outer).find('.dataTables_filter input').val('');
+		  		$(outer).find('table').dataTable().fnFilter(search);
 
-		  	}));
+		  	});
 
 		  // Customize select
 		  $(outer).find('select').addClass('form-control input-sm');
