@@ -33,10 +33,6 @@
 	<?php endforeach?>
 	<?php endif?>
 
-	<style>
-	main > .container { margin-top: 1rem; }	
-	</style>
-
 	<script>
 		var baseUrl = "<?php echo conf('subdirectory'); ?>",
 			appUrl = "<?php echo rtrim(url(), '/'); ?>",

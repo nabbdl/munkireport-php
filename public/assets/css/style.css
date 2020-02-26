@@ -16,6 +16,9 @@ svg.clickLabels .nv-bar{
 body {
   padding-bottom: 40px;
 }
+
+main > .container { margin-top: 1rem; }	
+
 /* color for list group items */
 a.list-group-item-success > .badge
 {
@@ -196,4 +199,12 @@ svg .nv-label text
     display: inline-block;
     margin-right: 20px;
 }
+
+.btn-group-xs > .btn, .btn-xs {
+  padding: .25rem .4rem;
+  font-size: .875rem;
+  line-height: .5;
+  border-radius: .2rem;
+}
+
 
