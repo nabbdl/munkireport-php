@@ -140,6 +140,7 @@
 				if( +group.groupid === +groupObj.groupid){
 					group.name = groupObj.name;
 					group.keys = groupObj.keys || [];
+					group.archive = groupObj.archive;
 					found = true;
 					return;
 				}
@@ -211,6 +212,12 @@
 				// Get data from form
 				var formData = $('#myModal form').serializeArray();
 
+				// Set archive property
+				formData.push({
+					name: 'archive',
+					value: $('input[name="archive"').is(":checked")
+				});
+
 				// Save machine group data
 				var jqxhr = $.post( appUrl + "/admin/save_machine_group", formData);
 
@@ -219,7 +226,8 @@
 					var group = {
 						groupid: data.groupid,
 						name: data.name,
-						keys: data.keys || []
+						keys: data.keys || [],
+						archive: data.archive
 					}
 					// Update name in view
 					$('a.machine-group-' + data.groupid)
@@ -322,6 +330,14 @@
 						.append($('<label>')
 							.text('Business Unit'))
 						.append(businessUnitSelect))
+					.append($('<div class="checkbox">')
+						.append($('<label>')
+							.append($('<input type="checkbox" name="archive" value="">')
+								.prop( "checked", function(){
+									return data['archive'] === "true";
+								} )
+							)
+							.append('Use for archiving')))
 					.append($('<button>')
 						.addClass('btn btn-danger')
 						.click(deleteMachineGroup)
