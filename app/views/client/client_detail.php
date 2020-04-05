@@ -69,6 +69,12 @@ $modules->addWidgets(
 				<input type="text" class="form-control mr-computer_name_input" readonly>
 
 				<div class="input-group-btn">
+					<?php if($user->canArchive()):?> 
+					<button type="button" class="btn btn-default">
+						<span data-i18n="archive" class="hidden-sm hidden-xs"></span>
+						<i class="fa fa-archive"></i>
+					</button>
+					<?php endif?>
 					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 						<span data-i18n="remote_control" class="hidden-sm hidden-xs"></span>
 						<i class="fa fa-binoculars fa-fw"></i>

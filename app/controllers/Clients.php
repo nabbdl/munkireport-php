@@ -4,6 +4,7 @@ namespace munkireport\controller;
 
 use \Controller, \View;
 use \Machine_model;
+use munkireport\lib\User;
 
 
 
@@ -97,6 +98,7 @@ class Clients extends Controller
 
         $machine = Machine_model::where('serial_number', $sn)
             ->first();
+        $data['user'] = new User;
 
         // Check if machine exists/is allowed for this user to view
         if (! $machine) {
