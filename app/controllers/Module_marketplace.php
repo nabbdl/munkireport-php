@@ -13,6 +13,10 @@ class Module_marketplace extends Controller
 
     public function __construct()
     {
+        // Check authorization
+        $this->authorized() || jsonError('Authenticate first', 403);
+        $this->authorized('global') || jsonError('You need to be admin', 403);
+
         $this->moduleMarketplace = getMrModuleObj();
 
         // Connect to database
