@@ -7,6 +7,7 @@ RUN apt-get update && \
     libcurl4-openssl-dev \
     libzip-dev \
     unzip \
+    sqlite3 \ 
     zlib1g-dev \
     libxml2-dev && \
     apt-get clean && \
@@ -57,5 +58,7 @@ RUN sed -i 's/ServerTokens OS/ServerTokens Prod/' /etc/apache2/conf-available/se
 RUN sed -i 's/ServerSignature On/ServerSignature Off/' /etc/apache2/conf-available/security.conf
 
 RUN a2enmod rewrite
+
+RUN /usr/bin/sqlite3 /var/munkireport/app/db/db.sqlite 'pragma journal__mode=wal;'
 
 EXPOSE 80
